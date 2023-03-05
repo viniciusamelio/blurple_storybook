@@ -1,6 +1,7 @@
 import 'package:blurple/themes/dark_theme.dart';
 import 'package:blurple/themes/theme_data.dart';
 import 'package:blurple/tokens/color_tokens.dart';
+import 'package:blurple/widgets/bottom_sheets/bottom_sheet.dart';
 import 'package:blurple/widgets/buttons/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -120,7 +121,45 @@ class HotreloadWidgetbook extends StatelessWidget {
                 ],
               ),
             ],
-          )
+          ),
+          WidgetbookCategory(
+            name: "Bottom Sheet",
+            widgets: [
+              WidgetbookComponent(
+                name: "Base Bottom Sheet",
+                useCases: [
+                  WidgetbookUseCase(
+                    name: "Default",
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: BorderedButton(
+                          text: "Show Bottom Sheet",
+                          backgroundColor: ColorTokens.shadow,
+                          onPressed: () {
+                            BaseBottomSheet(
+                              body: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "This is a Base Bottom Sheet test",
+                                    style: TextStyle(
+                                      color: ColorTokens.greyLighter,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ).show(
+                              context,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
         themes: [
           WidgetbookTheme(
