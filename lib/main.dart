@@ -129,7 +129,7 @@ class HotreloadWidgetbook extends StatelessWidget {
                 name: "Base Bottom Sheet",
                 useCases: [
                   WidgetbookUseCase(
-                    name: "Default",
+                    name: "Base",
                     builder: (BuildContext context) {
                       return Center(
                         child: BorderedButton(
@@ -156,6 +156,49 @@ class HotreloadWidgetbook extends StatelessWidget {
                       );
                     },
                   ),
+                  WidgetbookUseCase(
+                      name: "Content",
+                      builder: (context) {
+                        return Center(
+                          child: BorderedButton(
+                            text: "Show Content Bottom Sheet",
+                            onPressed: () {
+                              BaseBottomSheet(
+                                title: "Content Bottom Sheet",
+                                type: BottomSheetType.content,
+                                content:
+                                    "This is a content bottom sheet, which means it should display a title, a content and maybe some actions and illustrations",
+                                actions: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    BaseButton.text(
+                                      text: "Do something",
+                                      foregroundColor:
+                                          BlurpleThemeData.of(context)
+                                              .colorScheme
+                                              .infoColor,
+                                      onPressed: () {},
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    BaseButton.text(
+                                      text: "Close it",
+                                      foregroundColor:
+                                          BlurpleThemeData.of(context)
+                                              .colorScheme
+                                              .dangerColor,
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                  ],
+                                ),
+                              ).show(context);
+                            },
+                          ),
+                        );
+                      }),
                 ],
               ),
             ],
