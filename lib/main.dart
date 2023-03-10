@@ -1,20 +1,18 @@
 import 'package:blurple/themes/dark_theme.dart';
 import 'package:blurple/themes/theme_data.dart';
 import 'package:blurple/tokens/color_tokens.dart';
-import 'package:blurple/widgets/bottom_sheets/bottom_sheet.dart';
-import 'package:blurple/widgets/buttons/buttons.dart';
-import 'package:blurple/widgets/tab/tab.dart';
-import 'package:blurple/widgets/tab/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 
+import 'categories/categories.dart';
+
 void main() {
-  runApp(HotreloadWidgetbook());
+  runApp(const WidgetBook());
 }
 
-class HotreloadWidgetbook extends StatelessWidget {
-  HotreloadWidgetbook({Key? key}) : super(key: key);
-  final List<Option<Color>> colors = [
+class WidgetBook extends StatelessWidget {
+  const WidgetBook({Key? key}) : super(key: key);
+  static final List<Option<Color>> colors = [
     Option(label: "Blurple", value: ColorTokens.blurple),
     Option(label: "Blurple Lighter", value: ColorTokens.blurpleLighter),
     Option(label: "Blurple Darker", value: ColorTokens.blurpleDarker),
@@ -42,227 +40,9 @@ class HotreloadWidgetbook extends StatelessWidget {
           ),
         ),
         categories: [
-          WidgetbookCategory(
-            name: 'buttons',
-            widgets: [
-              WidgetbookComponent(
-                name: 'Base Button',
-                useCases: [
-                  WidgetbookUseCase(
-                    name: 'Text',
-                    builder: (context) => Center(
-                      child: BaseButton.text(
-                        onPressed: () {},
-                        text: context.knobs.text(
-                          label: "Text",
-                          initialValue: "Button",
-                        ),
-                        backgroundColor: context.knobs.options(
-                            label: "Background Color", options: colors),
-                        foregroundColor: context.knobs.options(
-                            label: "Foreground Color", options: colors),
-                      ),
-                    ),
-                  ),
-                  WidgetbookUseCase(
-                    name: 'Icon',
-                    builder: (context) => Center(
-                      child: BaseButton.icon(
-                        onPressed: () {},
-                        label: context.knobs.nullableText(
-                          label: "Text",
-                          initialValue: "Button",
-                        ),
-                        foregroundColor: context.knobs.options(
-                          label: "Foreground Color",
-                          options: colors,
-                        ),
-                        backgroundColor: context.knobs.options(
-                          label: "Background Color",
-                          options: colors,
-                        ),
-                        icon: const Icon(
-                          Icons.lock_clock,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              WidgetbookComponent(
-                name: "Bordered Button",
-                useCases: [
-                  WidgetbookUseCase(
-                    name: "Text",
-                    builder: (context) => Center(
-                      child: BorderedButton(
-                        onPressed: () {},
-                        text: context.knobs.text(
-                          label: "Text",
-                          initialValue: "Button",
-                        ),
-                      ),
-                    ),
-                  ),
-                  WidgetbookUseCase(
-                    name: "Icon",
-                    builder: (context) => Center(
-                      child: BorderedIconButton(
-                        onPressed: () {},
-                        text: context.knobs.nullableText(
-                          label: "Text",
-                          initialValue: "Button",
-                        ),
-                        foregroundColor: context.knobs.options(
-                            label: "Foreground Color", options: colors),
-                        child: const Icon(Icons.wifi),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          WidgetbookCategory(
-            name: "Bottom Sheet",
-            widgets: [
-              WidgetbookComponent(
-                name: "Base Bottom Sheet",
-                useCases: [
-                  WidgetbookUseCase(
-                    name: "Base",
-                    builder: (BuildContext context) {
-                      return Center(
-                        child: BorderedButton(
-                          text: "Show Bottom Sheet",
-                          backgroundColor: ColorTokens.shadow,
-                          onPressed: () {
-                            BaseBottomSheet(
-                              body: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    "This is a Base Bottom Sheet test",
-                                    style: TextStyle(
-                                      color: ColorTokens.greyLighter,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ).show(
-                              context,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  WidgetbookUseCase(
-                      name: "Content",
-                      builder: (context) {
-                        return Center(
-                          child: BorderedButton(
-                            text: "Show Content Bottom Sheet",
-                            onPressed: () {
-                              BaseBottomSheet(
-                                title: "Content Bottom Sheet",
-                                type: BottomSheetType.content,
-                                content:
-                                    "This is a content bottom sheet, which means it should display a title, a content and maybe some actions and illustrations",
-                                actions: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    BaseButton.text(
-                                      text: "Do something",
-                                      foregroundColor:
-                                          BlurpleThemeData.of(context)
-                                              .colorScheme
-                                              .infoColor,
-                                      onPressed: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    BaseButton.text(
-                                      text: "Close it",
-                                      foregroundColor:
-                                          BlurpleThemeData.of(context)
-                                              .colorScheme
-                                              .dangerColor,
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                    ),
-                                  ],
-                                ),
-                              ).show(context);
-                            },
-                          ),
-                        );
-                      }),
-                ],
-              ),
-            ],
-          ),
-          WidgetbookCategory(
-            name: "Tab Bar",
-            widgets: [
-              WidgetbookComponent(
-                name: "BlurpleTabBar",
-                useCases: [
-                  WidgetbookUseCase(
-                    name: "Default",
-                    builder: (context) {
-                      return BlurpleTabBar(
-                        items: [
-                          DefaultTabItem(
-                            isActive: false,
-                            inactiveChild: Text(
-                              "item 01",
-                              style: TextStyle(
-                                color: BlurpleThemeData.of(context)
-                                    .colorScheme
-                                    .accentColor
-                                    .withAlpha(175),
-                              ),
-                            ),
-                            child: Text(
-                              "Item 01",
-                              style: TextStyle(
-                                  color: BlurpleThemeData.of(context)
-                                      .colorScheme
-                                      .accentColor),
-                            ),
-                          ),
-                          DefaultTabItem(
-                            isActive: false,
-                            inactiveChild: Text(
-                              "item 02",
-                              style: TextStyle(
-                                color: BlurpleThemeData.of(context)
-                                    .colorScheme
-                                    .accentColor
-                                    .withAlpha(175),
-                              ),
-                            ),
-                            child: Text(
-                              "item 02",
-                              style: TextStyle(
-                                color: BlurpleThemeData.of(context)
-                                    .colorScheme
-                                    .accentColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
+          buttonsCategory(),
+          bottomSheetCategory(),
+          tabBarCategory(),
         ],
         themes: [
           WidgetbookTheme(
