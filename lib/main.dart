@@ -43,6 +43,7 @@ class WidgetBook extends StatelessWidget {
           buttonsCategory(),
           bottomSheetCategory(),
           tabBarCategory(),
+          inputCategory(),
         ],
         themes: [
           WidgetbookTheme(
