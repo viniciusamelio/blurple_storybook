@@ -2,6 +2,7 @@ import 'package:blurple/themes/dark_theme.dart';
 import 'package:blurple/themes/theme_data.dart';
 import 'package:blurple/tokens/color_tokens.dart';
 import 'package:flutter/material.dart';
+import 'package:storybook/categories/badge.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 import 'categories/categories.dart';
@@ -44,6 +45,7 @@ class WidgetBook extends StatelessWidget {
           bottomSheetCategory(),
           tabBarCategory(),
           inputCategory(),
+          badgeCategory(),
         ],
         themes: [
           WidgetbookTheme(
