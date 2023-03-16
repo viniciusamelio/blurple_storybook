@@ -85,7 +85,7 @@ WidgetbookCategory buttonsCategory() {
                   label: "Foreground Color",
                   options: WidgetBook.colors,
                 ),
-                child: const Icon(Icons.wifi),
+                suffixIcon: const Icon(Icons.wifi),
               ),
             ),
           ),
