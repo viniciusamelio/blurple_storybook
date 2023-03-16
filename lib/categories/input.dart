@@ -45,6 +45,16 @@ WidgetbookCategory inputCategory() {
               );
             },
           ),
+          WidgetbookUseCase(
+            name: "Large",
+            builder: (context) {
+              return Center(
+                child: BaseInput.large(
+                  label: "Large input",
+                ),
+              );
+            },
+          ),
         ],
       ),
     ],
